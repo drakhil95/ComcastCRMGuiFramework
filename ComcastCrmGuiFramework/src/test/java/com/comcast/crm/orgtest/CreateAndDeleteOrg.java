@@ -21,7 +21,7 @@ import com.comcast.crm.objectrepository.OrganizationPage;
 public class CreateAndDeleteOrg extends BaseClass{
 	
 	@Test
-	public void createDeleteOrg() throws IOException {
+	public void createDeleteOrgTest() throws IOException {
 		
 		ExtentTest test = UtilityClassObject.getTest();
 
