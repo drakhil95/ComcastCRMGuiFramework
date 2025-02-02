@@ -1,58 +1,52 @@
 package com.comcast.crm.leadtest;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import java.io.IOException;
+
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-import com.comcast.crm.generic.fileutility.ExcelUtility;
-import com.comcast.crm.generic.fileutility.FIleUtility;
-import com.comcast.crm.generic.webdriverutility.JavaUtility;
-import com.comcast.crm.generic.webdriverutility.WebdriverUtility;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.comcast.crm.basetest.BaseClass;
+import com.comcast.crm.generic.webdriverutility.UtilityClassObject;
+import com.comcast.crm.objectrepository.CreateLeadsPage;
+import com.comcast.crm.objectrepository.HomePage;
+import com.comcast.crm.objectrepository.LeadsInformationPage;
+import com.comcast.crm.objectrepository.LeadsPage;
 
-public class LeadWithPhone {
-	public static void main(String[] args) throws Exception {
-		FIleUtility fiu = new FIleUtility();
-		JavaUtility ju = new JavaUtility();
-		ExcelUtility eu = new ExcelUtility();
-		WebdriverUtility wu = new WebdriverUtility();
-		
-		//Get common date from the Common data
-		// String BROWSER = fiu.getDataFromPropertyFile("browser");
-		String URL = fiu.getDataFromPropertyFile("url");
-		String UN = fiu.getDataFromPropertyFile("un");
-		String PW = fiu.getDataFromPropertyFile("pw");
-		
-		
+public class LeadWithPhone extends BaseClass{
 	
+	@Test
+	public void leadWithPhoneTest() throws IOException {
+		ExtentTest test = UtilityClassObject.getTest();
+		
 		String lastName = eu.getDataFromExcel("Sheet1", 10, 2);
 		String orgName = eu.getDataFromExcel("Sheet1", 1, 2) + ju.getRandomNumber();
 		String phone = eu.getDataFromExcel("Sheet1", 7, 3);
-		
-		WebDriver driver = new ChromeDriver();
-		wu.waitForPageToLoad(driver);
-		driver.get(URL);
-		driver.findElement(By.name("user_name")).sendKeys(UN);
-		driver.findElement(By.name("user_password")).sendKeys(PW);
-		driver.findElement(By.id("submitButton")).click();
 
 		//navigate to organization module
-		driver.findElement(By.linkText("Leads")).click();
-		
-		driver.findElement(By.xpath("//img[@title='Create Lead...']")).click();
-		driver.findElement(By.name("lastname")).sendKeys(lastName);
-		driver.findElement(By.name("company")).sendKeys(orgName);
-		driver.findElement(By.id("phone")).sendKeys(phone);
-		driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
-		
-		
-		WebElement actPhone = driver.findElement(By.id("dtlview_Phone"));
-		
-		if (actPhone.getText().equals(phone)) {
-			System.out.println("Phone number verified");
-		}
-		
-		driver.quit();
+		HomePage hp = new HomePage(driver);
+		test.log(Status.INFO, "Logged into the homepage successfully");
 
+		hp.getLeadsLink().click();
+		test.log(Status.INFO, "Navigated to Leads page successfully");
+
+		
+		// Clicking on the create leads button
+		LeadsPage lp = new LeadsPage(driver);
+		lp.getCreateLeadBtn().click();
+		
+		// Entering all the mandatory details into the leads text fields including Phone
+		CreateLeadsPage clp = new CreateLeadsPage(driver);
+		clp.getLastNameTbx().sendKeys(lastName);
+		clp.getCompanyTbx().sendKeys(orgName);
+		clp.getPhoneTbx().sendKeys(phone);
+		clp.getSaveBtn().click();	
+		
+		LeadsInformationPage lip = new LeadsInformationPage(driver);
+		WebElement actPhone = lip.getActPhone();
+		
+		Assert.assertTrue(actPhone.getText().equals(phone), "Phone number not verified");
 	}
 }

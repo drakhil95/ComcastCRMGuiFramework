@@ -71,10 +71,4 @@ public class HomePage {
 	public WebElement getMoreLink() {
 		return moreLink;
 	}
-
-	public WebElement getVendorsLink() {
-		return vendorsLink;
-	}
-	
-	
 }

@@ -1,66 +1,59 @@
 package com.comcast.crm.leadtest;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
 
-import com.comcast.crm.generic.fileutility.ExcelUtility;
-import com.comcast.crm.generic.fileutility.FIleUtility;
-import com.comcast.crm.generic.webdriverutility.JavaUtility;
-import com.comcast.crm.generic.webdriverutility.WebdriverUtility;
-
-
-
-public class LeadWithLeadSourceAndIndustry {
-
-	public static void main(String[] args) throws Exception {
-		FIleUtility fiu = new FIleUtility();
-		JavaUtility ju = new JavaUtility();
-		ExcelUtility eu = new ExcelUtility();
-		WebdriverUtility wu = new WebdriverUtility();
-
-		//Get common date from the Common data
-		// String BROWSER = fiu.getDataFromPropertyFile("browser");
-		String URL = fiu.getDataFromPropertyFile("url");
-		String UN = fiu.getDataFromPropertyFile("un");
-		String PW = fiu.getDataFromPropertyFile("pw");
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.comcast.crm.basetest.BaseClass;
+import com.comcast.crm.generic.webdriverutility.UtilityClassObject;
+import com.comcast.crm.objectrepository.CreateLeadsPage;
+import com.comcast.crm.objectrepository.HomePage;
+import com.comcast.crm.objectrepository.LeadsInformationPage;
+import com.comcast.crm.objectrepository.LeadsPage;
 
 
-
+@Listeners(com.comcast.crm.listenerutility.ListenerImpClass.class)
+public class LeadWithLeadSourceAndIndustry extends BaseClass{
+	
+	
+	@Test
+	public void LeadWithSourceAndIndustryTest() throws IOException {
+		ExtentTest test = UtilityClassObject.getTest();
 		String lastName = eu.getDataFromExcel("Sheet1", 10, 2);
 		String orgName = eu.getDataFromExcel("Sheet1", 1, 2) + ju.getRandomNumber();
 
-		WebDriver driver = new ChromeDriver();
-		wu.waitForPageToLoad(driver);
-		driver.get(URL);
-		driver.findElement(By.name("user_name")).sendKeys(UN);
-		driver.findElement(By.name("user_password")).sendKeys(PW);
-		driver.findElement(By.id("submitButton")).click();
-
-		//navigate to organization module
-		driver.findElement(By.linkText("Leads")).click();
-
-		driver.findElement(By.xpath("//img[@title='Create Lead...']")).click();
-		driver.findElement(By.name("lastname")).sendKeys(lastName);
-		driver.findElement(By.name("company")).sendKeys(orgName);
+		//navigate to Leads module
+		HomePage hp = new HomePage(driver);
+		hp.getLeadsLink().click();
+		test.log(Status.INFO, "Logged into the homepage successfully");
 		
-		wu.selectDropdown(driver.findElement(By.name("leadsource")), 2); // selecting existing customer
-		wu.selectDropdown(driver.findElement(By.name("industry")), 2); // selecting banking from the drop down
-		driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
-
-
-		WebElement industry = driver.findElement(By.id("dtlview_Industry"));
-		WebElement leadSource = driver.findElement(By.id("dtlview_Lead Source"));
-
-		if (industry.getText().contains("Banking")) {
-			System.out.println("Industry verified");
-		}
-		if (leadSource.getText().equals("Existing Customer")) {
-			System.out.println("lead source verified");
-		}
 		
-		driver.quit();
+		LeadsPage lp = new LeadsPage(driver);
+		lp.getCreateLeadBtn().click();
+		test.log(Status.INFO, "Navigated to Leads page successfully");
+		
+		
+		CreateLeadsPage clp = new CreateLeadsPage(driver);
+		clp.getLastNameTbx().sendKeys(lastName);
+		clp.getCompanyTbx().sendKeys(orgName);
+		clp.selectLeadSourceByIndex(2); // selecting existing customer
+		clp.selectndustryByIndex(2); // selecting banking from the drop down
+		clp.getSaveBtn().click();
+		test.log(Status.PASS, "Leads created successfully with lead source and industry");
+		
+		LeadsInformationPage lip = new LeadsInformationPage(driver);		
+		
+		Assert.assertTrue(lip.getActIndustry().getText().equals("Banking"), "Industry not verified");
+		test.log(Status.PASS, "Industry verified");
+
+		Assert.assertTrue(lip.getActLeadSource().getText().equals("Existing Customer"), "lead source not verified");
+		test.log(Status.PASS, "Lead source verified");
+
 	}
-
 }

@@ -1,66 +1,60 @@
 package com.comcast.crm.leadtest;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import java.io.IOException;
+
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
 
-import com.comcast.crm.generic.fileutility.ExcelUtility;
-import com.comcast.crm.generic.fileutility.FIleUtility;
-import com.comcast.crm.generic.webdriverutility.JavaUtility;
-import com.comcast.crm.generic.webdriverutility.WebdriverUtility;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.comcast.crm.basetest.BaseClass;
+import com.comcast.crm.generic.webdriverutility.UtilityClassObject;
+import com.comcast.crm.objectrepository.CreateLeadsPage;
+import com.comcast.crm.objectrepository.HomePage;
+import com.comcast.crm.objectrepository.LeadsInformationPage;
+import com.comcast.crm.objectrepository.LeadsPage;
 
-public class CreateLead {
 
-	public static void main(String[] args) throws Exception {
-		FIleUtility fiu = new FIleUtility();
-		JavaUtility ju = new JavaUtility();
-		ExcelUtility eu = new ExcelUtility();
-		WebdriverUtility wu = new WebdriverUtility();
-		
-		//Get common date from the Common data
-		// String BROWSER = fiu.getDataFromPropertyFile("browser");
-		String URL = fiu.getDataFromPropertyFile("url");
-		String UN = fiu.getDataFromPropertyFile("un");
-		String PW = fiu.getDataFromPropertyFile("pw");
-		
-		
+@Listeners(com.comcast.crm.listenerutility.ListenerImpClass.class)
+public class CreateLead extends BaseClass{
 	
+	@Test
+	public void createLeadTest() throws IOException {
+		ExtentTest test = UtilityClassObject.getTest();
 		String lastName = eu.getDataFromExcel("Sheet1", 10, 2);
 		String orgName = eu.getDataFromExcel("Sheet1", 1, 2) + ju.getRandomNumber();
-		
-		WebDriver driver = new ChromeDriver();
-		wu.waitForPageToLoad(driver);
-		driver.get(URL);
-		driver.findElement(By.name("user_name")).sendKeys(UN);
-		driver.findElement(By.name("user_password")).sendKeys(PW);
-		driver.findElement(By.id("submitButton")).click();
 
-		//navigate to organization module
-		driver.findElement(By.linkText("Leads")).click();
+		//navigate to Leads module
+		test.log(Status.INFO, "Logged into the homepage successfully");
+		HomePage hp = new HomePage(driver);
 		
-		driver.findElement(By.xpath("//img[@title='Create Lead...']")).click();
-		driver.findElement(By.name("lastname")).sendKeys(lastName);
-		driver.findElement(By.name("company")).sendKeys(orgName);
-		driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
+		hp.getLeadsLink().click();
+		test.log(Status.INFO, "Navigated to Leads page successfully");
 		
 		
-		WebElement actLastName = driver.findElement(By.id("dtlview_Last Name"));
-		WebElement actOrg = driver.findElement(By.id("dtlview_Company"));
-		WebElement header = driver.findElement(By.className("dvHeaderText"));
+		LeadsPage lp = new LeadsPage(driver);
+		lp.getCreateLeadBtn().click();
 		
-		if (actLastName.getText().equals(lastName)) {
-			System.out.println(lastName + " : Last name verified");
-		}
-		if (actOrg.getText().equals(orgName)) {
-			System.out.println(orgName + " : Organization name verified");
-		}
-		if (header.getText().contains(lastName)) {
-			System.out.println("Header verified");
-		}
+		//Create the lead
+		CreateLeadsPage clp = new CreateLeadsPage(driver);
+		clp.getLastNameTbx().sendKeys(lastName);
+		clp.getCompanyTbx().sendKeys(orgName);
+		clp.getSaveBtn().click();
 		
-		driver.quit();
-
+		test.log(Status.PASS, "Leads created successfully");
+		LeadsInformationPage lip = new LeadsInformationPage(driver);
+		WebElement actLastName = lip.getActLastNameTbx();
+		WebElement actOrg = lip.getActOrgName();
+		WebElement header = lip.getHeader();
+		
+		
+		Assert.assertTrue(actLastName.getText().equals(lastName), lastName + " : Last name not verified");
+		test.log(Status.PASS, "Last name verified");
+		Assert.assertTrue(actOrg.getText().equals(orgName), orgName + " : Organization name not verified");
+		test.log(Status.PASS, "Organization name verified");
+		Assert.assertTrue(header.getText().contains(lastName), header + " : header message not verified");
+		test.log(Status.PASS, "Header message verified");
 	}
-
 }

@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-01-28T17:39:53 IST" name="Default suite" finished-at="2025-01-28T17:40:03 IST" duration-ms="9679">
+  <suite started-at="2025-02-02T19:18:05 IST" name="Default suite" finished-at="2025-02-02T19:18:15 IST" duration-ms="9939">
     <groups>
     </groups>
-    <test started-at="2025-01-28T17:39:53 IST" name="Default test" finished-at="2025-01-28T17:40:03 IST" duration-ms="9679">
-      <class name="com.comcast.crm.orgtest.TC_01">
-        <test-method is-config="true" signature="configBS()[pri:0, instance:com.comcast.crm.orgtest.TC_01@411f53a0]" started-at="2025-01-28T17:39:53 IST" name="configBS" finished-at="2025-01-28T17:39:53 IST" duration-ms="10" status="PASS">
+    <test started-at="2025-02-02T19:18:05 IST" name="Default test" finished-at="2025-02-02T19:18:15 IST" duration-ms="9939">
+      <class name="com.comcast.crm.vendors.CreateProductWIthVendor">
+        <test-method is-config="true" signature="configBS()[pri:0, instance:com.comcast.crm.vendors.CreateProductWIthVendor@74235045]" started-at="2025-02-02T19:18:05 IST" name="configBS" finished-at="2025-02-02T19:18:05 IST" duration-ms="8" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- configBS -->
-        <test-method is-config="true" signature="openBrowser(java.lang.String)[pri:0, instance:com.comcast.crm.orgtest.TC_01@411f53a0]" started-at="2025-01-28T17:39:53 IST" name="openBrowser" finished-at="2025-01-28T17:39:56 IST" duration-ms="2600" status="PASS">
+        <test-method is-config="true" signature="openBrowser(java.lang.String)[pri:0, instance:com.comcast.crm.vendors.CreateProductWIthVendor@74235045]" started-at="2025-02-02T19:18:05 IST" name="openBrowser" finished-at="2025-02-02T19:18:06 IST" duration-ms="1669" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -22,27 +22,27 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method is-config="true" signature="login()[pri:0, instance:com.comcast.crm.orgtest.TC_01@411f53a0]" started-at="2025-01-28T17:39:56 IST" name="login" finished-at="2025-01-28T17:39:58 IST" duration-ms="2386" status="PASS">
+        <test-method is-config="true" signature="login()[pri:0, instance:com.comcast.crm.vendors.CreateProductWIthVendor@74235045]" started-at="2025-02-02T19:18:06 IST" name="login" finished-at="2025-02-02T19:18:09 IST" duration-ms="2327" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- login -->
-        <test-method signature="createOrgTest()[pri:0, instance:com.comcast.crm.orgtest.TC_01@411f53a0]" started-at="2025-01-28T17:39:58 IST" name="createOrgTest" finished-at="2025-01-28T17:40:02 IST" duration-ms="3758" status="PASS">
+        <test-method signature="createProductWIthVendor()[pri:0, instance:com.comcast.crm.vendors.CreateProductWIthVendor@74235045]" started-at="2025-02-02T19:18:09 IST" name="createProductWIthVendor" finished-at="2025-02-02T19:18:14 IST" duration-ms="4914" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- createOrgTest -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:com.comcast.crm.orgtest.TC_01@411f53a0]" started-at="2025-01-28T17:40:02 IST" name="logout" finished-at="2025-01-28T17:40:03 IST" duration-ms="646" status="PASS">
+        </test-method> <!-- createProductWIthVendor -->
+        <test-method is-config="true" signature="logout()[pri:0, instance:com.comcast.crm.vendors.CreateProductWIthVendor@74235045]" started-at="2025-02-02T19:18:14 IST" name="logout" finished-at="2025-02-02T19:18:14 IST" duration-ms="789" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- logout -->
-        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:com.comcast.crm.orgtest.TC_01@411f53a0]" started-at="2025-01-28T17:40:03 IST" name="closeBrowser" finished-at="2025-01-28T17:40:03 IST" duration-ms="250" status="PASS">
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:com.comcast.crm.vendors.CreateProductWIthVendor@74235045]" started-at="2025-02-02T19:18:14 IST" name="closeBrowser" finished-at="2025-02-02T19:18:15 IST" duration-ms="205" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeBrowser -->
-        <test-method is-config="true" signature="afterSuite()[pri:0, instance:com.comcast.crm.orgtest.TC_01@411f53a0]" started-at="2025-01-28T17:40:03 IST" name="afterSuite" finished-at="2025-01-28T17:40:03 IST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="afterSuite()[pri:0, instance:com.comcast.crm.vendors.CreateProductWIthVendor@74235045]" started-at="2025-02-02T19:18:15 IST" name="afterSuite" finished-at="2025-02-02T19:18:15 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterSuite -->
-      </class> <!-- com.comcast.crm.orgtest.TC_01 -->
+      </class> <!-- com.comcast.crm.vendors.CreateProductWIthVendor -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

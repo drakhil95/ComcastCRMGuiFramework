@@ -1,51 +1,41 @@
 package com.comcast.crm.vendors;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import java.io.IOException;
+
+
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
 
-import com.comcast.crm.generic.fileutility.ExcelUtility;
-import com.comcast.crm.generic.fileutility.FIleUtility;
-import com.comcast.crm.generic.webdriverutility.WebdriverUtility;
+import com.comcast.crm.basetest.BaseClass;
+import com.comcast.crm.objectrepository.CreateVendorsPage;
+import com.comcast.crm.objectrepository.HomePage;
+import com.comcast.crm.objectrepository.VendorsInformationPage;
+import com.comcast.crm.objectrepository.VendorsPage;
 
-public class CreateVendorTest {
-	public static void main(String[] args) throws Exception {
-		FIleUtility fiu = new FIleUtility();
-		ExcelUtility eu = new ExcelUtility();
-		WebdriverUtility wu = new WebdriverUtility();
-		
-		//Get common date from the Common data
-		// String BROWSER = fiu.getDataFromPropertyFile("browser");
-		String URL = fiu.getDataFromPropertyFile("url");
-		String UN = fiu.getDataFromPropertyFile("un");
-		String PW = fiu.getDataFromPropertyFile("pw");
+@Listeners(com.comcast.crm.listenerutility.ListenerImpClass.class)
+public class CreateVendorTest extends BaseClass{
 	
+	@Test
+	public void createVendorTest() throws IOException {
 		String vendorName = eu.getDataFromExcel("Sheet1", 16, 2);
 		
-		WebDriver driver = new ChromeDriver();
-		wu.waitForPageToLoad(driver);
-		driver.get(URL);
-		driver.findElement(By.name("user_name")).sendKeys(UN);
-		driver.findElement(By.name("user_password")).sendKeys(PW);
-		driver.findElement(By.id("submitButton")).click();
-
-		//navigate to organization module
-		wu.mouseMoveOnElement(driver, driver.findElement(By.linkText("More")));
-		driver.findElement(By.linkText("Vendors")).click();
+		//navigate to Vendor module
+		HomePage hp = new HomePage(driver);
+		hp.navigateToVendor(); // Navigating to vendors module
 		
-		driver.findElement(By.xpath("//img[@title='Create Vendor...']")).click();
-		driver.findElement(By.name("vendorname")).sendKeys(vendorName);
-		driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
+		VendorsPage vp = new VendorsPage(driver);
+		vp.getCreateVendorBtn().click();
 		
+		CreateVendorsPage cvp = new CreateVendorsPage(driver);
+		cvp.getVendorNameTbx().sendKeys(vendorName);
+		cvp.getSaveBtn().click();		
 		
-		WebElement actVendor = driver.findElement(By.id("dtlview_Vendor Name"));
+		VendorsInformationPage vip = new VendorsInformationPage(driver);
 		
-		if (actVendor.getText().equals(vendorName)) {
-			System.out.println("Vendor verified");
-		}
+		WebElement actVendor = vip.getActVendorName();
 		
-		driver.quit();
-
-	}
+		Assert.assertTrue(actVendor.getText().equals(vendorName), "Vendor not  verified");
+			}
 }

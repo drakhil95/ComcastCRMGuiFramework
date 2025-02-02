@@ -16,7 +16,7 @@ public class ProductsPage {
 		PageFactory.initElements(driver, this);
 	}
 
-	public WebElement getCreateVendorBtn() {
+	public WebElement getCreateProductBtn() {
 		return createProductBtn;
 	}
 }

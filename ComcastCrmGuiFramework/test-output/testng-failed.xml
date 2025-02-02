@@ -3,17 +3,17 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.comcast.crm.orgtest.TC_01">
+      <class name="com.comcast.crm.vendors.CreateProductWIthVendor">
         <methods>
           <include name="configBS"/>
           <include name="login"/>
-          <include name="createOrgTest"/>
           <include name="openBrowser"/>
+          <include name="createProductWIthVendor"/>
           <include name="afterSuite"/>
           <include name="logout"/>
           <include name="closeBrowser"/>
         </methods>
-      </class> <!-- com.comcast.crm.orgtest.TC_01 -->
+      </class> <!-- com.comcast.crm.vendors.CreateProductWIthVendor -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

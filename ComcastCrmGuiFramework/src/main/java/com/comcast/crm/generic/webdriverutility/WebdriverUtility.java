@@ -42,7 +42,7 @@ public class WebdriverUtility {
 	}
 	
 	/*
-	 * Switching to the other tab using title
+	 * Switching to the other tab using partial title
 	 */
 	public void switchTabOnTitle(WebDriver driver, String partialTitle) {
 		Set<String> allWid = driver.getWindowHandles();
