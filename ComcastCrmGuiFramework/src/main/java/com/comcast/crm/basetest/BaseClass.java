@@ -32,19 +32,19 @@ public class BaseClass {
 	public ExcelUtility eu = new ExcelUtility();
 	public JavaUtility ju = new JavaUtility();
 	
-	@BeforeSuite
+	@BeforeSuite(alwaysRun = true)
 	public void configBS() {
 		System.out.println("****Connect to DB****, ****Report config****");	
 		
 	}
 	
-	@AfterSuite
+	@AfterSuite(alwaysRun = true)
 	public void afterSuite() {
 		System.out.println("****DB Disconnected****, ****Report file****");	
 	}
 	
 	@Parameters("browser")
-	@BeforeClass
+	@BeforeClass(alwaysRun = true)
 	public void openBrowser(@Optional("chrome") String browser) throws IOException {
 		System.out.println("BeforClass method is executing");
 		switch (browser) {
@@ -56,15 +56,15 @@ public class BaseClass {
 		wu.waitForPageToLoad(driver);
 		// sdriver = driver; // we need to pass the browser session into the TakeScreenshot  in listener so we use this 
 		// static driver to pass the browser session into that. But it is no longer needed since we are using the utility class object to pass the same driver object
-		UtilityClassObject.setDriver(driver); // sharing the static 
+		UtilityClassObject.setDriver(driver); // sharing the driver object
 	}
 	
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	public void closeBrowser() {
 		driver.quit();
 	}
 	
-	@BeforeMethod
+	@BeforeMethod(alwaysRun = true)
 	public void login() throws IOException {
 		LoginPage lp = new LoginPage(driver);
 		String un = fu.getDataFromPropertyFile("un");
@@ -74,7 +74,7 @@ public class BaseClass {
 		
 	}
 	
-	@AfterMethod
+	@AfterMethod(alwaysRun = true)
 	public void logout() {
 		HomePage hp = new HomePage(driver);
 		hp.logout();

@@ -20,7 +20,7 @@ import com.comcast.crm.objectrepository.LeadsPage;
 @Listeners(com.comcast.crm.listenerutility.ListenerImpClass.class)
 public class LeadTestSuite extends BaseClass{
 
-	@Test(dependsOnGroups = "Smoke")
+	@Test(groups = "Smoke")
 	public void createLeadTest() throws IOException {
 		ExtentTest test = UtilityClassObject.getTest();
 		String lastName = eu.getDataFromExcel("Sheet1", 10, 2);
@@ -58,7 +58,7 @@ public class LeadTestSuite extends BaseClass{
 		test.log(Status.PASS, "Header message verified");
 	}
 
-	@Test(dependsOnGroups = "Regression")
+	@Test(groups = "Regression")
 	public void leadWithPhoneTest() throws IOException {
 		ExtentTest test = UtilityClassObject.getTest();
 
@@ -91,7 +91,7 @@ public class LeadTestSuite extends BaseClass{
 		Assert.assertTrue(actPhone.getText().equals(phone), "Phone number not verified");
 	}
 
-	@Test(dependsOnGroups = "Regression")
+	@Test(groups = "Regression")
 	public void LeadWithSourceAndIndustryTest() throws IOException {
 		ExtentTest test = UtilityClassObject.getTest();
 		String lastName = eu.getDataFromExcel("Sheet1", 10, 2);

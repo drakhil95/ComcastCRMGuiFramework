@@ -15,7 +15,7 @@ import com.comcast.crm.objectrepository.VendorsPage;
 public class VendorTestSuite extends BaseClass{
 
 	
-	@Test(dependsOnGroups = "Smoke")
+	@Test(groups = "Smoke")
 	public void createProductWIthVendor() throws IOException {
 		String vendorName = eu.getDataFromExcel("Sheet1", 16, 2);
 		//String productName = eu.getDataFromExcel("Sheet1", 16, 3);
@@ -55,7 +55,7 @@ public class VendorTestSuite extends BaseClass{
 //		}
 	}
 	
-	@Test(dependsOnGroups = "Regression")
+	@Test(groups = "Regression")
 	public void createVendorTest() throws IOException {
 		String vendorName = eu.getDataFromExcel("Sheet1", 16, 2);
 		

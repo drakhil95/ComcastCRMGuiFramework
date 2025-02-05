@@ -16,7 +16,7 @@ import com.comcast.crm.objectrepository.OrganizationPage;
 
 public class ContactsTestSuite extends BaseClass{
 	
-	@Test(dependsOnGroups = "Smoke")
+	@Test(groups = "Smoke")
 	public void ContactwithOrg() throws Exception {
 		
 		int randomInt = ju.getRandomNumber();// To get a random integer
@@ -75,7 +75,7 @@ public class ContactsTestSuite extends BaseClass{
 	}
 	
 	
-	@Test(dependsOnGroups = "Regression")
+	@Test(groups = "Regression")
 	public void contactWithValidationTest() throws Exception {
 		//Get Test Script data from the Excel
 		String lastName = eu.getDataFromExcel("sheet1", 10, 2);
@@ -120,7 +120,7 @@ public class ContactsTestSuite extends BaseClass{
 		Assert.assertTrue(actEndDate.getText().equals(endDate), endDate + " not verified. ===> Failed");
 	}
 	
-	@Test(dependsOnGroups = "Regression")
+	@Test(groups = "Regression")
 	public void createContactTest() throws Exception {
 		//Get Test Script data from the Excel
 		String lastName = eu.getDataFromExcel("sheet1", 10, 2);

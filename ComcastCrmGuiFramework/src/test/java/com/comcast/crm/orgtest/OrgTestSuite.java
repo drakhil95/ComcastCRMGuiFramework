@@ -23,7 +23,7 @@ import com.comcast.crm.objectrepository.OrganizationPage;
 public class OrgTestSuite extends BaseClass{
 
 	// Create an organization and verify the header message and the organization name
-	@Test(dependsOnGroups = "Smoke")
+	@Test(groups = "Smoke")
 	public void createOrgTest() throws Exception {
 		int randomInt = ju.getRandomNumber();// To get the random integer
 		//Get Test Script data from the Excel
@@ -66,7 +66,7 @@ public class OrgTestSuite extends BaseClass{
 		}
 	}
 
-	@Test(dependsOnGroups = "Regression")
+	@Test(groups = "Regression")
 	public void OrgWithIndustryAndTypeTest() throws Exception {
 		int randomInt = ju.getRandomNumber();// To get the random integer
 
@@ -104,7 +104,7 @@ public class OrgTestSuite extends BaseClass{
 		}
 	}
 
-	@Test(dependsOnGroups = "Regression")
+	@Test(groups = "Regression")
 	public void orgWithPhoneTest() throws IOException {
 
 		int randomInt = ju.getRandomNumber(); // To get the random integer
@@ -137,7 +137,7 @@ public class OrgTestSuite extends BaseClass{
 		}
 	}
 	
-	@Test(dependsOnGroups = "Regression")
+	@Test(groups = "Regression")
 	public void createDeleteOrgTest() throws IOException {
 		
 		ExtentTest test = UtilityClassObject.getTest();
