@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WebdriverUtility {
-	int implicitWaitDuration = 150;
+	int implicitWaitDuration = 20;
 	int explicitWaitDuration = 20;
 	
 	

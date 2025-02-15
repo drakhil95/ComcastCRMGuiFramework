@@ -3,17 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.comcast.crm.vendors.CreateProductWIthVendor">
+      <class name="demoPackage.SeleniumGridDemo">
         <methods>
-          <include name="configBS"/>
-          <include name="login"/>
-          <include name="openBrowser"/>
-          <include name="createProductWIthVendor"/>
-          <include name="afterSuite"/>
-          <include name="logout"/>
-          <include name="closeBrowser"/>
+          <include name="gridTest"/>
         </methods>
-      </class> <!-- com.comcast.crm.vendors.CreateProductWIthVendor -->
+      </class> <!-- demoPackage.SeleniumGridDemo -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

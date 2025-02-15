@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite thread-count="-1" name="Suite">
-  <test thread-count="1" name="Test">
+<suite name="Suite" parallel="tests" thread-count="5">
+  <test name="Test1">
     <classes>
-      <class name="com.comcast.crm.orgtest.TC_02"/>
-      <class name="com.comcast.crm.orgtest.TC_01"/>
-      <class name="com.comcast.crm.orgtest.TC_03"/>
+      <class name="demoPackage.Zelenium1"/>
     </classes>
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
+  </test>
+  <test name="Test2">
+    <classes>
+      <class name="demoPackage.Zelenium2"/>
+    </classes>
+  </test>
+  <test name="Test3">
+    <classes>
+      <class name="demoPackage.Zelenium3"/>
+    </classes>
+  </test>
+  <test name="Test4">
+    <classes>
+      <class name="demoPackage.Zelenium4"/>
+    </classes>
+  </test>
+</suite>
+

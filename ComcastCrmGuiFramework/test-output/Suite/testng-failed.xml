@@ -1,48 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" name="Test2(failed)">
-    <parameter name="browser" value="edge"/>
+<suite parallel="tests" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" parallel="tests" name="Test1(failed)">
+    <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="com.comcast.crm.contacttest.ContactsTestSuite">
-        <methods>
-          <include name="contactWithValidationTest"/>
-          <include name="configBS"/>
-          <include name="login"/>
-          <include name="createContactTest"/>
-          <include name="openBrowser"/>
-          <include name="afterSuite"/>
-          <include name="logout"/>
-          <include name="closeBrowser"/>
-          <include name="ContactwithOrg"/>
-        </methods>
-      </class> <!-- com.comcast.crm.contacttest.ContactsTestSuite -->
-      <class name="com.comcast.crm.vendors.VendorTestSuite">
-        <methods>
-          <include name="configBS"/>
-          <include name="login"/>
-          <include name="openBrowser"/>
-          <include name="afterSuite"/>
-          <include name="createVendorTest"/>
-          <include name="createProductWIthVendor"/>
-          <include name="logout"/>
-          <include name="closeBrowser"/>
-        </methods>
-      </class> <!-- com.comcast.crm.vendors.VendorTestSuite -->
-      <class name="com.comcast.crm.orgtest.OrgTestSuite">
-        <methods>
-          <include name="createDeleteOrgTest"/>
-          <include name="configBS"/>
-          <include name="login"/>
-          <include name="openBrowser"/>
-          <include name="afterSuite"/>
-          <include name="OrgWithIndustryAndTypeTest"/>
-          <include name="orgWithPhoneTest"/>
-          <include name="createOrgTest"/>
-          <include name="logout"/>
-          <include name="closeBrowser"/>
-        </methods>
-      </class> <!-- com.comcast.crm.orgtest.OrgTestSuite -->
       <class name="com.comcast.crm.leadtest.LeadTestSuite">
         <methods>
           <include name="leadWithPhoneTest"/>
@@ -57,62 +18,5 @@
         </methods>
       </class> <!-- com.comcast.crm.leadtest.LeadTestSuite -->
     </classes>
-  </test> <!-- Test2(failed) -->
-  <test thread-count="5" name="Test3(failed)">
-    <parameter name="browser" value="firefox"/>
-    <classes>
-      <class name="com.comcast.crm.contacttest.ContactsTestSuite">
-        <methods>
-          <include name="contactWithValidationTest"/>
-          <include name="configBS"/>
-          <include name="login"/>
-          <include name="createContactTest"/>
-          <include name="openBrowser"/>
-          <include name="afterSuite"/>
-          <include name="logout"/>
-          <include name="closeBrowser"/>
-          <include name="ContactwithOrg"/>
-        </methods>
-      </class> <!-- com.comcast.crm.contacttest.ContactsTestSuite -->
-      <class name="com.comcast.crm.vendors.VendorTestSuite">
-        <methods>
-          <include name="configBS"/>
-          <include name="login"/>
-          <include name="openBrowser"/>
-          <include name="afterSuite"/>
-          <include name="createVendorTest"/>
-          <include name="createProductWIthVendor"/>
-          <include name="logout"/>
-          <include name="closeBrowser"/>
-        </methods>
-      </class> <!-- com.comcast.crm.vendors.VendorTestSuite -->
-      <class name="com.comcast.crm.orgtest.OrgTestSuite">
-        <methods>
-          <include name="createDeleteOrgTest"/>
-          <include name="configBS"/>
-          <include name="login"/>
-          <include name="openBrowser"/>
-          <include name="afterSuite"/>
-          <include name="OrgWithIndustryAndTypeTest"/>
-          <include name="orgWithPhoneTest"/>
-          <include name="createOrgTest"/>
-          <include name="logout"/>
-          <include name="closeBrowser"/>
-        </methods>
-      </class> <!-- com.comcast.crm.orgtest.OrgTestSuite -->
-      <class name="com.comcast.crm.leadtest.LeadTestSuite">
-        <methods>
-          <include name="leadWithPhoneTest"/>
-          <include name="configBS"/>
-          <include name="login"/>
-          <include name="LeadWithSourceAndIndustryTest"/>
-          <include name="openBrowser"/>
-          <include name="afterSuite"/>
-          <include name="createLeadTest"/>
-          <include name="logout"/>
-          <include name="closeBrowser"/>
-        </methods>
-      </class> <!-- com.comcast.crm.leadtest.LeadTestSuite -->
-    </classes>
-  </test> <!-- Test3(failed) -->
+  </test> <!-- Test1(failed) -->
 </suite> <!-- Failed suite [Suite] -->

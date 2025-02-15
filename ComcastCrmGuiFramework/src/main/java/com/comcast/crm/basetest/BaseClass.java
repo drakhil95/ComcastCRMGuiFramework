@@ -1,11 +1,15 @@
 package com.comcast.crm.basetest;
 
 import java.io.IOException;
+import java.net.URL;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -25,7 +29,7 @@ import com.comcast.crm.objectrepository.LoginPage;
 
 public class BaseClass {
 	
-	public WebDriver driver;
+	public RemoteWebDriver driver;
 	
 	public FIleUtility fu = new FIleUtility();
 	public WebdriverUtility wu = new WebdriverUtility();
@@ -53,6 +57,21 @@ public class BaseClass {
 			case "firefox": driver = new FirefoxDriver(); break;
 			default: driver = new ChromeDriver();
 		}
+//		@SuppressWarnings("deprecation")
+//		URL url = new URL(" http://localhost:4444");
+//		if (browser.equals("chrome")) { 
+//			ChromeOptions opt = new ChromeOptions();
+//			driver = new RemoteWebDriver(url, opt);
+//		} else if (browser.equals("edge")) {
+//			EdgeOptions opt = new EdgeOptions();
+//			driver = new RemoteWebDriver(url, opt);
+//		} else if (browser.equals("firefox")) {
+//			FirefoxOptions opt = new FirefoxOptions();
+//			driver = new RemoteWebDriver(url, opt);
+//		} else {
+//			ChromeOptions opt = new ChromeOptions();
+//			driver = new RemoteWebDriver(url, opt);
+//		}
 		wu.waitForPageToLoad(driver);
 		// sdriver = driver; // we need to pass the browser session into the TakeScreenshot  in listener so we use this 
 		// static driver to pass the browser session into that. But it is no longer needed since we are using the utility class object to pass the same driver object
