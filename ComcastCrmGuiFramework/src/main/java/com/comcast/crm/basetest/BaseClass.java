@@ -17,7 +17,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.Parameters; 
 
 import com.comcast.crm.generic.fileutility.ExcelUtility;
 import com.comcast.crm.generic.fileutility.FIleUtility;
@@ -58,7 +58,7 @@ public class BaseClass {
 			default: driver = new ChromeDriver();
 		}
 //		@SuppressWarnings("deprecation")
-//		URL url = new URL(" http://localhost:4444");
+//		URL url = new URL(" http://10.10.20.207:444");
 //		if (browser.equals("chrome")) { 
 //			ChromeOptions opt = new ChromeOptions();
 //			driver = new RemoteWebDriver(url, opt);

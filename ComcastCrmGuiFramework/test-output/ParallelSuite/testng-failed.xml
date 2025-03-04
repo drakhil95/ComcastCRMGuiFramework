@@ -35,21 +35,4 @@
       </class> <!-- com.comcast.crm.orgtest.OrgTestSuite -->
     </classes>
   </test> <!-- Test3(failed) -->
-  <test thread-count="4" parallel="tests" name="Test4(failed)">
-    <classes>
-      <class name="com.comcast.crm.contacttest.ContactsTestSuite">
-        <methods>
-          <include name="contactWithValidationTest"/>
-          <include name="configBS"/>
-          <include name="login"/>
-          <include name="createContactTest"/>
-          <include name="openBrowser"/>
-          <include name="afterSuite"/>
-          <include name="logout"/>
-          <include name="closeBrowser"/>
-          <include name="ContactwithOrg"/>
-        </methods>
-      </class> <!-- com.comcast.crm.contacttest.ContactsTestSuite -->
-    </classes>
-  </test> <!-- Test4(failed) -->
 </suite> <!-- Failed suite [ParallelSuite] -->
